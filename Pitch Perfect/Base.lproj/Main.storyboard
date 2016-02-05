@@ -133,14 +133,6 @@
                                     <action selector="stopCurrentAudio:" destination="miR-5I-2UL" eventType="touchUpInside" id="WoA-Yd-RSu"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bp7-BK-iYU">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <animations/>
-                                <state key="normal" image="Reverb"/>
-                                <connections>
-                                    <action selector="reverbButton:" destination="miR-5I-2UL" eventType="touchUpInside" id="tgM-5a-Zkv"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RZG-kr-Gs9">
                                 <rect key="frame" x="250" y="302" width="100" height="100"/>
                                 <animations/>
@@ -149,12 +141,20 @@
                                     <action selector="rippleButton:" destination="miR-5I-2UL" eventType="touchUpInside" id="hvD-mg-hZM"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bp7-BK-iYU">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <animations/>
+                                <state key="normal" image="Reverb"/>
+                                <connections>
+                                    <action selector="reverbButton:" destination="miR-5I-2UL" eventType="touchUpInside" id="tgM-5a-Zkv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.42745098040000001" green="0.72941176470000002" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="bp7-BK-iYU" firstAttribute="centerX" secondItem="cbb-C2-AK7" secondAttribute="centerX" id="4Wg-SW-bQ8">
-                                <variation key="widthClass=compact" constant="-78"/>
+                                <variation key="widthClass=compact" constant="-83"/>
                             </constraint>
                             <constraint firstItem="y37-5k-N8A" firstAttribute="centerX" secondItem="cbb-C2-AK7" secondAttribute="centerX" id="7vs-JO-vrs"/>
                             <constraint firstItem="5sK-fB-NDg" firstAttribute="top" secondItem="vuU-IG-bH4" secondAttribute="bottom" constant="21" id="97h-hY-cH0"/>
@@ -177,7 +177,7 @@
                             <constraint firstItem="eX4-h9-L52" firstAttribute="leading" secondItem="cbb-C2-AK7" secondAttribute="leadingMargin" constant="17" id="dlc-g9-H6X"/>
                             <constraint firstAttribute="trailing" secondItem="vuU-IG-bH4" secondAttribute="trailing" constant="24" id="rlJ-7G-zlf"/>
                             <constraint firstItem="RZG-kr-Gs9" firstAttribute="leading" secondItem="bp7-BK-iYU" secondAttribute="trailing" constant="84" id="s8U-yR-30U">
-                                <variation key="widthClass=compact" constant="67"/>
+                                <variation key="widthClass=compact" constant="72"/>
                             </constraint>
                             <constraint firstItem="5sK-fB-NDg" firstAttribute="leading" secondItem="vuU-IG-bH4" secondAttribute="leading" id="sEX-Dn-1JR"/>
                         </constraints>
