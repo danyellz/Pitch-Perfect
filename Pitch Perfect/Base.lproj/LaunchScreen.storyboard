@@ -17,9 +17,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="PitchPerfect" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BaU-ed-lLw">
-                                <rect key="frame" x="211" y="283" width="178" height="33"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PitchPerfect" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BaU-ed-lLw">
+                                <rect key="frame" x="211" y="253" width="178" height="94"/>
                                 <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="178" id="SBL-H2-hRc"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -28,8 +31,9 @@
                         <animations/>
                         <color key="backgroundColor" red="0.42745098040000001" green="0.72941176470000002" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="BaU-ed-lLw" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-0.5" id="R8f-sG-bLr"/>
-                            <constraint firstItem="BaU-ed-lLw" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="SdD-al-tXD"/>
+                            <constraint firstItem="BaU-ed-lLw" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Dte-dh-j2T"/>
+                            <constraint firstItem="BaU-ed-lLw" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="pzk-MU-PR1"/>
+                            <constraint firstItem="BaU-ed-lLw" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="233" id="zed-IQ-KI5"/>
                         </constraints>
                     </view>
                 </viewController>

@@ -40,6 +40,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate{
         stopAudio.hidden = true
         audioStatus.hidden = true
         tapToRecord.hidden = false
+        tapToRecord.alpha = 1
         
     }
     
@@ -101,11 +102,9 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate{
     //Generate random text color
     func getRandomColor() -> UIColor{
         
-        var newRed:CGFloat = CGFloat(drand48())
-        
-        var newGreen:CGFloat = 0
-        
-        var newBlue:CGFloat = CGFloat(drand48())
+        let newRed:CGFloat = CGFloat(drand48())
+        let newGreen:CGFloat = 0
+        let newBlue:CGFloat = CGFloat(drand48())
         
         return UIColor(red: newRed, green: newGreen, blue: newBlue, alpha: 1.0)
     }
@@ -114,7 +113,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate{
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool){
         if(flag){
             //Save the recorded audio name and url and store in ReocordedAudio NSObject
-            recordedAudio = RecordedAudio()
+            recordedAudio = RecordedAudio(filePathUrl: recorder.url, title: recorder.url.lastPathComponent!)
             recordedAudio.filePathUrl = recorder.url
             recordedAudio.title = recorder.url.lastPathComponent
             self.performSegueWithIdentifier("stopRecording", sender:recordedAudio)//Perform segue if recorded successfully
@@ -141,7 +140,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate{
         recordButton.enabled = true
         audioStatus.hidden = true
         stopAudio.hidden = true
-    
         audioRecorder.stop()
         let audioSession = AVAudioSession.sharedInstance()
         try! audioSession.setActive(false)
