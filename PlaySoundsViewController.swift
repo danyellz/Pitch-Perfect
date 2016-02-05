@@ -45,6 +45,7 @@ class PlaySoundsViewController: UIViewController {
     }
     @IBAction func slowAudio(sender: UIButton) {
         print("slowing down...")
+        audioEngine.stop()
         audioPlayer.stop()
         audioPlayer.rate = 0.09
         audioPlayer.currentTime = 0

@@ -105,10 +105,10 @@
 		1023A1691C607621002EEFFA /* Pitch Perfect */ = {
 			isa = PBXGroup;
 			children = (
-				1023A16A1C607621002EEFFA /* AppDelegate.swift */,
-				1023A16C1C607621002EEFFA /* RecordSoundsViewController.swift */,
 				1023A19A1C61943D002EEFFA /* PlaySoundsViewController.swift */,
 				1023A1A01C61D289002EEFFA /* RecordedAudio.swift */,
+				1023A16A1C607621002EEFFA /* AppDelegate.swift */,
+				1023A16C1C607621002EEFFA /* RecordSoundsViewController.swift */,
 				1023A16E1C607621002EEFFA /* Main.storyboard */,
 				1023A1711C607621002EEFFA /* Assets.xcassets */,
 				1023A1731C607621002EEFFA /* LaunchScreen.storyboard */,
