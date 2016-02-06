@@ -43,19 +43,20 @@ class PlaySoundsViewController: UIViewController {
     @IBAction func slowAudio(sender: UIButton) {
         print("slowing down...")
         self.stopPlayBack()
-        effectsWithVariableSpeeds(0.9)
+        playSoundAtVariousSpeed(0.9)
         audioPlayer.currentTime = 0
         audioPlayer.play()
     }
     @IBAction func speedAudio(sender: UIButton) {
         print("speeding up...")
         self.stopPlayBack()
-        effectsWithVariableSpeeds(2)
+        playSoundAtVariousSpeed(2)
         audioPlayer.currentTime = 0
         audioPlayer.play()
     }
     
-    func effectsWithVariableSpeeds(speed: Float){
+    //Was previsouly effectsWithVariableSpeeds, should have named it differently but it is fixed in previous commmit
+    func playSoundAtVariousSpeed(speed: Float){
         audioPlayer.rate = speed
     }
     
