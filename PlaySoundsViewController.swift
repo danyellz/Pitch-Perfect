@@ -44,16 +44,14 @@ class PlaySoundsViewController: UIViewController {
     }
     @IBAction func slowAudio(sender: UIButton) {
         print("slowing down...")
-        audioEngine.stop()
-        audioPlayer.stop()
+        stopPlayBack()
         audioPlayer.rate = 0.09
         audioPlayer.currentTime = 0
         audioPlayer.play()
     }
     @IBAction func speedAudio(sender: UIButton) {
         print("speeding up...")
-        audioEngine.stop()
-        audioPlayer.stop()
+        stopPlayBack()
         audioPlayer.rate = 2
         audioPlayer.currentTime = 0
         audioPlayer.play()
@@ -74,19 +72,23 @@ class PlaySoundsViewController: UIViewController {
     }
     
     @IBAction func stopCurrentAudio(sender: AnyObject) {
-        audioPlayer.stop()
-        audioEngine.stop()
+        self.stopPlayBack()
     }
     @IBAction func reverbButton(sender: AnyObject) {
         self.playAudioWithReverb()
         
     }
-
-    //Function to change pitch of audio .wav audio created in previous view
-    func playAudioWithVariablePitch(pitch: Float){
+    
+    func stopPlayBack(){
         audioPlayer.stop()
         audioEngine.stop()
         audioEngine.reset()
+    }
+
+    //Function to change pitch of audio .wav audio created in previous view
+    func playAudioWithVariablePitch(pitch: Float){
+        
+        stopPlayBack()
         
         //Attach audioPlayerNode to audioEngine
         let audioPlayerNode = AVAudioPlayerNode()
@@ -134,9 +136,8 @@ class PlaySoundsViewController: UIViewController {
     }
     
     func playAudioWithReverb(){
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
+        
+        stopPlayBack()
         
         let reverbPlayerNode = AVAudioPlayerNode()
         audioEngine.attachNode(reverbPlayerNode)

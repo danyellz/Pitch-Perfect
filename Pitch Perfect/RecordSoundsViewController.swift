@@ -94,8 +94,9 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate{
     }
     
     func performAnimation(){
-        UIView.animateWithDuration(1.5, delay: 0.25, options: .Repeat, animations: {
+        UIView.animateWithDuration(1, delay: 0.25, options: .Repeat, animations: {
             self.tapToRecord.alpha = 0.0
+            self.audioStatus.alpha = 0.0
             },completion: nil)
     }
     
@@ -114,9 +115,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate{
         if(flag){
             //Save the recorded audio name and url and store in ReocordedAudio NSObject
             recordedAudio = RecordedAudio(filePathUrl: recorder.url, title: recorder.url.lastPathComponent!)
-            recordedAudio.filePathUrl = recorder.url
-            recordedAudio.title = recorder.url.lastPathComponent
-            self.performSegueWithIdentifier("stopRecording", sender:recordedAudio)//Perform segue if recorded successfully
+            performSegueWithIdentifier("stopRecording", sender:recordedAudio)//Perform segue if recorded successfully
         }else{
             //prints error if audio save was unsuccessful
             print("recording was unsuccessful...")
