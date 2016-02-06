@@ -27,11 +27,11 @@ class PlaySoundsViewController: UIViewController {
         super.viewDidLoad()
         
         //Import audio file for slow/fast
+        audioPlayer = try! AVAudioPlayer(contentsOfURL: recievedAudio.filePathUrl)
         audioPlayer.enableRate = true
         
         audioEngine = AVAudioEngine()
         
-        audioPlayer = try! AVAudioPlayer(contentsOfURL: recievedAudio.filePathUrl)
         //Import previously recorded audio .wav for AVAudioEngine
         audioFile = try! AVAudioFile(forReading: recievedAudio.filePathUrl)
     }
@@ -44,14 +44,14 @@ class PlaySoundsViewController: UIViewController {
     }
     @IBAction func slowAudio(sender: UIButton) {
         print("slowing down...")
-        stopPlayBack()
+        self.stopPlayBack()
         audioPlayer.rate = 0.09
         audioPlayer.currentTime = 0
         audioPlayer.play()
     }
     @IBAction func speedAudio(sender: UIButton) {
         print("speeding up...")
-        stopPlayBack()
+        self.stopPlayBack()
         audioPlayer.rate = 2
         audioPlayer.currentTime = 0
         audioPlayer.play()
@@ -88,7 +88,7 @@ class PlaySoundsViewController: UIViewController {
     //Function to change pitch of audio .wav audio created in previous view
     func playAudioWithVariablePitch(pitch: Float){
         
-        stopPlayBack()
+        self.stopPlayBack()
         
         //Attach audioPlayerNode to audioEngine
         let audioPlayerNode = AVAudioPlayerNode()
@@ -114,9 +114,7 @@ class PlaySoundsViewController: UIViewController {
     }
     
     func playAudioWithDelay(){
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
+        self.stopPlayBack()
         
         let delayPlayerNode = AVAudioPlayerNode()
         audioEngine.attachNode(delayPlayerNode)
@@ -137,7 +135,7 @@ class PlaySoundsViewController: UIViewController {
     
     func playAudioWithReverb(){
         
-        stopPlayBack()
+        self.stopPlayBack()
         
         let reverbPlayerNode = AVAudioPlayerNode()
         audioEngine.attachNode(reverbPlayerNode)
