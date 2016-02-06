@@ -41,6 +41,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate{
         audioStatus.hidden = true
         tapToRecord.hidden = false
         tapToRecord.alpha = 1
+        audioStatus.alpha = 1
         
     }
     

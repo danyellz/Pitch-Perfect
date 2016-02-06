@@ -27,11 +27,11 @@ class PlaySoundsViewController: UIViewController {
         super.viewDidLoad()
         
         //Import audio file for slow/fast
-        audioPlayer = try! AVAudioPlayer(contentsOfURL: recievedAudio.filePathUrl)
         audioPlayer.enableRate = true
         
         audioEngine = AVAudioEngine()
         
+        audioPlayer = try! AVAudioPlayer(contentsOfURL: recievedAudio.filePathUrl)
         //Import previously recorded audio .wav for AVAudioEngine
         audioFile = try! AVAudioFile(forReading: recievedAudio.filePathUrl)
     }
