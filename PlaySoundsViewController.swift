@@ -35,9 +35,7 @@ class PlaySoundsViewController: UIViewController {
         //Import previously recorded audio .wav for AVAudioEngine
         audioFile = try! AVAudioFile(forReading: recievedAudio.filePathUrl)
     }
-    
-    override func viewWillAppear(animated: Bool) {
-    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -45,16 +43,20 @@ class PlaySoundsViewController: UIViewController {
     @IBAction func slowAudio(sender: UIButton) {
         print("slowing down...")
         self.stopPlayBack()
-        audioPlayer.rate = 0.09
+        effectsWithVariableSpeeds(0.9)
         audioPlayer.currentTime = 0
         audioPlayer.play()
     }
     @IBAction func speedAudio(sender: UIButton) {
         print("speeding up...")
         self.stopPlayBack()
-        audioPlayer.rate = 2
+        effectsWithVariableSpeeds(2)
         audioPlayer.currentTime = 0
         audioPlayer.play()
+    }
+    
+    func effectsWithVariableSpeeds(speed: Float){
+        audioPlayer.rate = speed
     }
     
     @IBAction func playChipMunkAudio(sender: UIButton) {
