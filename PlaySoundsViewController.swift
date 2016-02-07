@@ -51,7 +51,7 @@ class PlaySoundsViewController: UIViewController {
     
     //Was previsouly effectsWithVariableSpeeds, should have named it differently but it is fixed in previous commmit
     func playSoundAtVariousSpeed(speed: Float){
-        self.stopPlayBack()
+        stopPlayBack()
         audioPlayer.rate = speed
         audioPlayer.currentTime = 0
         audioPlayer.play()
@@ -59,23 +59,31 @@ class PlaySoundsViewController: UIViewController {
     
     @IBAction func playChipMunkAudio(sender: UIButton) {
         //Define the pitch of the pitch modulating function
-        playAudioWithVariablePitch(1000)
+        let modifyAudioPitch = AVAudioUnitTimePitch()
+        modifyAudioPitch.pitch = 1000
+        playAudioWithEffects(modifyAudioPitch)
         
     }
     
     @IBAction func playDarthVaderAudio(sender: AnyObject) {
-        playAudioWithVariablePitch(-1000)
+        let modifyAudioPitch = AVAudioUnitTimePitch()
+        modifyAudioPitch.pitch = -1000
+        playAudioWithEffects(modifyAudioPitch)
     }
     
     @IBAction func rippleButton(sender: AnyObject) {
-        self.playAudioWithDelay()
+        let echoEffect = AVAudioUnitDelay()
+        echoEffect.delayTime = 0.5
+        playAudioWithEffects(echoEffect)
     }
     
     @IBAction func stopCurrentAudio(sender: AnyObject) {
-        self.stopPlayBack()
+        stopPlayBack()
     }
     @IBAction func reverbButton(sender: AnyObject) {
-        self.playAudioWithReverb()
+        let reverbEffect = AVAudioUnitReverb()
+        reverbEffect.wetDryMix = 75
+        playAudioWithEffects(reverbEffect)
         
     }
     
@@ -84,73 +92,31 @@ class PlaySoundsViewController: UIViewController {
         audioEngine.stop()
         audioEngine.reset()
     }
+    
+    func playAudioWithEffects(audioEffect: AVAudioUnit){
+        //Stop playback before executing audio with effects
+        stopPlayBack()
+        
+        //Create an instance of AVAduioPlayerNode
+        let audioEffectsPlayerNode = AVAudioPlayerNode()
+        
+        //Attach node to AudioEngine
+        audioEngine.attachNode(audioEffectsPlayerNode)
+        
+        //Attach node audioEffect in order to define effect type in mutiple Actions
+        audioEngine.attachNode(audioEffect)
+        
+        //Connect AVAdudioPlayerNode to audioEffect node
+        audioEngine.connect(audioEffectsPlayerNode, to: audioEffect, format: nil)
+        //Connect AVAudioUnit to audioEngine
+        audioEngine.connect(audioEffect, to: audioEngine.outputNode, format: nil)
+        
+        //Select file which will be played back
+        audioEffectsPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
 
-    //Function to change pitch of audio .wav audio created in previous view
-    func playAudioWithVariablePitch(pitch: Float){
-        
-        self.stopPlayBack()
-        
-        //Attach audioPlayerNode to audioEngine
-        let audioPlayerNode = AVAudioPlayerNode()
-        audioEngine.attachNode(audioPlayerNode)
-        
-        //Attach the pitch effect modulation to audioEngine
-        let changePitchEfect = AVAudioUnitTimePitch()
-        changePitchEfect.pitch = pitch
-        audioEngine.attachNode(changePitchEfect)
-        
-        //Connect audioPlayerNode to changePitchEffect
-        audioEngine.connect(audioPlayerNode, to: changePitchEfect, format: nil)
-        
-        //Create an outlet of the modified pitch to speakers--outputNode
-        audioEngine.connect(changePitchEfect, to: audioEngine.outputNode, format: nil)
-        
-        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
-        
-        //Begin audioEngine modifier
+        //Start the audio
         try! audioEngine.start()
-        audioPlayerNode.play()
-        
-    }
-    
-    func playAudioWithDelay(){
-        self.stopPlayBack()
-        
-        let delayPlayerNode = AVAudioPlayerNode()
-        audioEngine.attachNode(delayPlayerNode)
-        
-        let delay = AVAudioUnitDelay()
-        delay.delayTime = (0.5)
-        audioEngine.attachNode(delay)
-        
-        audioEngine.connect(delayPlayerNode, to: delay, format: nil)
-        
-        audioEngine.connect(delay, to: audioEngine.outputNode, format: nil)
-        
-        delayPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
-        
-        try! audioEngine.start()
-        delayPlayerNode.play()
-    }
-    
-    func playAudioWithReverb(){
-        
-        self.stopPlayBack()
-        
-        let reverbPlayerNode = AVAudioPlayerNode()
-        audioEngine.attachNode(reverbPlayerNode)
-        
-        let reverb = AVAudioUnitReverb()
-        reverb.wetDryMix = 75
-        audioEngine.attachNode(reverb)
-        
-        audioEngine.connect(reverbPlayerNode, to: reverb, format: nil)
-        
-        audioEngine.connect(reverb, to: audioEngine.outputNode, format: nil)
-        
-        reverbPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
-        
-        try! audioEngine.start()
-        reverbPlayerNode.play()
+        //Start the AVAudioPlayerNode
+        audioEffectsPlayerNode.play()
     }
 }
